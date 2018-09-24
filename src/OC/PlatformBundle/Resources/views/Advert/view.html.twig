@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Advert view n° {{ id  }}</h1>
+<div>
+  {% for message in app.session.flashbag.get('info') %}
+    <p>Message flash : {{ message }}</p>
+  {% endfor %}
+</div>
+{% endblock %}
