@@ -21,7 +21,7 @@ oc_platform_add:
 oc_platform_edit:
     path:     /edit/{id}
     defaults:
-        _controller: OCPlatformBundle:Advert:edition
+        _controller: OCPlatformBundle:Advert:edit
     requirements:
         id: \d+
 
