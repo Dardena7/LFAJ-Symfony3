@@ -2,7 +2,10 @@
 
 {% block body %}
 
-<h1>Advert view n° {{ id  }}</h1>
+<h1>Advert view n° {{ advert.id }} title: {{ advert.title }}</h1>
+<p>Author: {{ advert.author }}</p>
+<p>Content: {{ advert.content }}</p>
+<p>Date: {{ advert.date|date("d/m/Y") }}</p>
 <div>
   {% for message in app.session.flashbag.get('info') %}
     <p>Message flash : {{ message }}</p>
