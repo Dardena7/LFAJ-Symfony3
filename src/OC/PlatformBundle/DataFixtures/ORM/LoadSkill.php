@@ -22,7 +22,7 @@ class LoadSkill implements FixtureInterface
     {
       $skill= new Skill();
       $skill->setName($name);
-      
+
       $manager->persist($skill);
     }
     $manager->flush();
