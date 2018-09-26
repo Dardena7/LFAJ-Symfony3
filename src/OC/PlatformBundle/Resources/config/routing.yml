@@ -40,3 +40,8 @@ oc_platform_view_slug:
     requirements:
         year: \d{4}
         format: html|xml
+
+oc_platform_applications_list:
+    path:     /applications
+    defaults:
+        _controller: OCPlatformBundle:Application:index

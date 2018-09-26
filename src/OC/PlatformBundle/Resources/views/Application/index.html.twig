@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Applications</h1>
+<ul>
+  {% for app in lastApplications %}
+    <li>
+      <p>Author: {{ app.author }}</p>
+      <p>Content: {{ app.content }}</p>
+      <p>Advert: {{ app.advert.title }}</p>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

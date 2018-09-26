@@ -34,8 +34,17 @@ class AdvertController extends Controller
 
     //if($page<1)
       //throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
+    $em = $this->getDoctrine()->getManager();
+    $listAdverts = $em
+      ->getRepository('OCPlatformBundle:Advert')
+      ->getAdvertWithCategories(array("Réseau", "Intégration"));
 
-    return $this->render('@OCPlatform/Advert/index.html.twig', array('page' => $page));
+    return $this->render('@OCPlatform/Advert/index.html.twig',
+      array(
+        'page' => $page,
+        'listAdverts' => $listAdverts
+      )
+    );
   }
 
   public function viewAction($id, Request $request)

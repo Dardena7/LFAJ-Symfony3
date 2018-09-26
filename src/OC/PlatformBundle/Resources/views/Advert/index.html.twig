@@ -4,4 +4,10 @@
 
 <h1>Mon propre hello world héhé !</h1>
 <p>page: {{ page }}</p>
+<h2>Adverts</h2>
+<ul>
+  {% for advert in listAdverts %}
+    <li> {{ advert.title }} </li>
+  {% endfor %}
+</ul>
 {% endblock %}

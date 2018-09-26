@@ -13,7 +13,7 @@ class LoadCategory implements FixtureInterface
     $names = array(
       'Développement web',
       'Développement mobile',
-      "Graphisme",
+      'Graphisme',
       'Intégration',
       'Réseau'
     );
