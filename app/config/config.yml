@@ -69,3 +69,8 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

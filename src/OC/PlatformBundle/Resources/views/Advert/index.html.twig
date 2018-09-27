@@ -3,11 +3,21 @@
 {% block body %}
 
 <h1>Mon propre hello world héhé !</h1>
-<p>page: {{ page }}</p>
 <h2>Adverts</h2>
 <ul>
   {% for advert in listAdverts %}
-    <li> {{ advert.title }} </li>
+    <li>
+      <a href="{{ path('oc_platform_view', {'id':advert.id}) }}">{{ advert.title}}</a> par {{ advert.author}}, {{ advert.date|date("d/m/Y")}}
+     </li>
+  {% endfor %}
+</ul>
+
+<h2>Pagination</h3>
+<ul>
+  {% for p in range(1, nbPages) %}
+    <li style="display: inline-block;{% if p==page %} background-color: lightblue{% endif %}">
+      <a href="{{ path('oc_platform_homepage', {'page':p})}}">{{p}}</a>
+    </li>
   {% endfor %}
 </ul>
 {% endblock %}

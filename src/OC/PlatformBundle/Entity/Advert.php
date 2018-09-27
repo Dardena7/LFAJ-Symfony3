@@ -5,12 +5,14 @@ namespace OC\PlatformBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use OC\PlatformBundle\Entity\Category;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Advert
  *
  * @ORM\Table(name="oc_advert")
  * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Advert
 {
@@ -29,6 +31,13 @@ class Advert
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     /**
      * @var string
@@ -52,7 +61,7 @@ class Advert
     private $content;
 
     /**
-     *  @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     *  @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -63,14 +72,30 @@ class Advert
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="advert")
+     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="advert", cascade="remove")
      */
     private $applications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\AdvertSkill", mappedBy="advert", cascade="remove")
+     */
+    private $skills;
 
     /**
      *  @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
+
+    /**
+     * @ORM\Column(name="nbApplications", type="integer")
+     */
+    private $nbApplications = 0;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
 
     public function __construct()
@@ -279,7 +304,6 @@ class Advert
     public function addApplication(\OC\PlatformBundle\Entity\Application $application)
     {
         $this->applications[] = $application;
-        $application->setAdvert($advert);
 
         return $this;
     }
@@ -302,5 +326,128 @@ class Advert
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Advert
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    public function increaseNbApp()
+    {
+      $this->nbApplications++;
+    }
+
+    public function decreaseNbApp()
+    {
+      $this->nbApplications--;
+    }
+
+    /**
+     * Set nbApplications
+     *
+     * @param integer $nbApplications
+     *
+     * @return Advert
+     */
+    public function setNbApplications($nbApplications)
+    {
+        $this->nbApplications = $nbApplications;
+
+        return $this;
+    }
+
+    /**
+     * Get nbApplications
+     *
+     * @return integer
+     */
+    public function getNbApplications()
+    {
+        return $this->nbApplications;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Advert
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add skill
+     *
+     * @param \OC\PlatformBundle\Entity\AdvertSkill $skill
+     *
+     * @return Advert
+     */
+    public function addSkill(\OC\PlatformBundle\Entity\AdvertSkill $skill)
+    {
+        $this->skills[] = $skill;
+        return $this;
+    }
+
+    /**
+     * Remove skill
+     *
+     * @param \OC\PlatformBundle\Entity\AdvertSkill $skill
+     */
+    public function removeSkill(\OC\PlatformBundle\Entity\AdvertSkill $skill)
+    {
+        $this->skills->removeElement($skill);
+    }
+
+    /**
+     * Get skills
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
     }
 }

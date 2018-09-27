@@ -9,9 +9,11 @@
 <p>Author: {{ advert.author }}</p>
 <p>Content: {{ advert.content }}</p>
 <p>Date: {{ advert.date|date("d/m/Y") }}</p>
+<p>Updated: {{ advert.updatedAt|date("d/m/Y H:i:s")}}
+  <p>Nb app: {{ advert.nbApplications }}</p>
 <p>Catégories :
   <ul>
-    {% for category in advert.categories %}
+    {% for category in listCategories %}
       <li>{{ category.name }}</li>
     {% endfor %}
     {% if advert.categories|length == 0 %}
@@ -35,6 +37,7 @@
 <h2> Applications </h2>
 {% for application in listApplications %}
   <div>
+    <p>Id: {{ application.id }}</p>
     <p>Date: {{ application.date|date("d/m/Y") }} </p>
     <p>Author: {{ application.author }} </p>
     <p>Content: {{ application.content }} </p>

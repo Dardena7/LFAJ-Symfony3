@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AdvertSkill
  *
- * @ORM\Table(name="advert_skill")
+ * @ORM\Table(name="oc_advert_skill")
  * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertSkillRepository")
  */
 class AdvertSkill
@@ -29,7 +29,7 @@ class AdvertSkill
     private $level;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Advert")
+     * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Advert", inversedBy="skills")
      * @ORM\JoinColumn(nullable=false)
      */
     private $advert;
@@ -85,7 +85,7 @@ class AdvertSkill
     public function setAdvert(\OC\PlatformBundle\Entity\Advert $advert)
     {
         $this->advert = $advert;
-
+        $advert->addSkill($this);
         return $this;
     }
 

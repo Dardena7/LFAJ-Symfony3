@@ -32,14 +32,10 @@ oc_platform_delete:
     requirements:
         id: \d+
 
-oc_platform_view_slug:
-    path:     /{year}/{slug}.{_format}
+oc_platform_menu:
+    path:     /menu
     defaults:
-        _controller: OCPlatformBundle:Advert:viewSlug
-        _format:      html
-    requirements:
-        year: \d{4}
-        format: html|xml
+        _controller: OCPlatformBundle:Advert:menu
 
 oc_platform_applications_list:
     path:     /applications
