@@ -20,4 +20,9 @@
     </li>
   {% endfor %}
 </ul>
+
+<br>
+{% if is_granted('ROLE_AUTEUR')%}
+  <a href="{{ path('oc_platform_add')}}">Ajouter une annonce</a>
+{% endif %}
 {% endblock %}

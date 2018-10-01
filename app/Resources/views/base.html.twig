@@ -9,6 +9,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          Connecté en tant que {{ app.user.username }}
+          -
+          <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+        {% else %}
+          <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+        {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}
           <script

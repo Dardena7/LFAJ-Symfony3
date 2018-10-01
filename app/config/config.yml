@@ -19,7 +19,7 @@ framework:
     csrf_protection: ~
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
-    default_locale: '%locale%'
+    default_locale: fr
     trusted_hosts: ~
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
@@ -30,6 +30,9 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
+    translator: { fallbacks: ["%locale%"] }
 
 # Twig Configuration
 twig:
@@ -75,3 +78,11 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: OC\UserBundle\Entity\User
+    from_email:
+        address: me@mail.com
+        sender_name: Me
