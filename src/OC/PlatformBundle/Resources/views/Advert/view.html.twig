@@ -4,7 +4,7 @@
 
 <h1>Advert view n° {{ advert.id }} title: {{ advert.title }}</h1>
 {% if advert.image is not null %}
-  <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}">
+  <img style="width:800px; height:250px" src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}">
 {% endif %}
 <p>Author: {{ advert.author }}</p>
 <p>Content: {{ advert.content }}</p>
