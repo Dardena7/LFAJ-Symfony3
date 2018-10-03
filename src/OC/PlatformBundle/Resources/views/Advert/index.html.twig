@@ -19,7 +19,7 @@
       <a href="{{ path('oc_platform_homepage', {'page':p})}}">{{p}}</a>
     </li>
   {% endfor %}
-</ul>
+</ul> {{nbPages}}
 
 <br>
 {% if is_granted('ROLE_AUTEUR')%}
