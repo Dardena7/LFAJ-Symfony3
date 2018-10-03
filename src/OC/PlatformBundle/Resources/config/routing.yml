@@ -1,5 +1,10 @@
+oc_platform_app:
+    path: /
+    defaults:
+        _controller: OCPlatformBundle:App:index
+
 oc_platform_homepage:
-    path:     /{page}
+    path:     /platform/{page}
     defaults:
         _controller: OCPlatformBundle:Advert:index
         page:        1
@@ -7,37 +12,37 @@ oc_platform_homepage:
         page: \d*
 
 oc_platform_view:
-    path:     /advert/{id}
+    path:     /platform/advert/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:view
     requirements:
         id: \d+
 
 oc_platform_add:
-    path:     /add
+    path:     /platform/add
     defaults:
         _controller: OCPlatformBundle:Advert:add
 
 oc_platform_edit:
-    path:     /edit/{id}
+    path:     /platform/edit/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:edit
     requirements:
         id: \d+
 
 oc_platform_delete:
-    path:     /delete/{id}
+    path:     /platform/delete/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:delete
     requirements:
         id: \d+
 
 oc_platform_menu:
-    path:     /menu
+    path:     /platform/menu
     defaults:
         _controller: OCPlatformBundle:Advert:menu
 
 oc_platform_applications_list:
-    path:     /applications
+    path:     /platform/applications
     defaults:
         _controller: OCPlatformBundle:Application:index

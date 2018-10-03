@@ -12,11 +12,11 @@ use OC\PlatformBundle\Entity\Application;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
-class LoadCategory implements FixtureInterface
+class LoadAdvert implements FixtureInterface
 {
   public function load(ObjectManager $manager)
   {
-
+/*
     //Load Categories
     $category1 = new Category();
     $category2 = new Category();
@@ -393,7 +393,7 @@ class LoadCategory implements FixtureInterface
     $manager->persist($advertSkill19);
     $manager->persist($advertSkill20);
 
-    $manager->flush();
+    $manager->flush(); */
   }
 }
 

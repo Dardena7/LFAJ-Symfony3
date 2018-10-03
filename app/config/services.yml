@@ -29,6 +29,17 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    OC\PlatformBundle\:
+        resource: '../../src/OC/PlatformBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/OC/PlatformBundle/{Entity,Repository,Tests}'
+
+    OC\PlatformBundle\:
+        resource: '../../src/OC/PlatformBundle/*'
+        public: true
+        tags: ['controller.service_arguments']
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

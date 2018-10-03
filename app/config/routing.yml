@@ -1,10 +1,5 @@
 oc_platform:
     resource: "@OCPlatformBundle/Resources/config/routing.yml"
-    prefix:   /platform
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

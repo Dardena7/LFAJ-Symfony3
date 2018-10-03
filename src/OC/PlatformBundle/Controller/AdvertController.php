@@ -39,6 +39,8 @@ class AdvertController extends Controller
     ;
 
     $nbPages = ceil(count($listAdverts)/$nbPerPage);
+    if($nbPages == 0)
+      $nbPages = 1;
 
     return $this->render('@OCPlatform/Advert/index.html.twig',
       array(
@@ -83,9 +85,7 @@ class AdvertController extends Controller
   }
 
 
-  /**
-   * @Security("has_role('ROLE_AUTEUR')")
-   */
+
   public function addAction(Request $request)
   {
     $advert = new Advert();
@@ -95,8 +95,14 @@ class AdvertController extends Controller
     {
       $form->handleRequest($request);
 
+      $author = $this->getUser();
+      if($author === null) {
+        throw new NotFoundHttpException("Il n'y a pas d'auteur ?!");
+      }
+
       if($form->isValid())
       {
+        $advert->setAuthor($author);
         $em = $this->getDoctrine()->getManager();
         $em->persist($advert);
         $em->flush();
@@ -123,6 +129,8 @@ class AdvertController extends Controller
     {
       throw new NotFoundHttpException("L'annonce avec l'id ".$id." n'existe pas.");
     }
+    
+    $this->denyAccessUnlessGranted('edit', $advert);
 
     $form = $this->get('form.factory')->create(AdvertEditType::class, $advert);
 
@@ -156,6 +164,8 @@ class AdvertController extends Controller
     {
       throw new NotFoundHttpException("L'annonce avec l'id ".$id." n'existe pas.");
     }
+
+    $this->denyAccessUnlessGranted('delete', $advert);
 
     $form = $this->get('form.factory')->create();
 

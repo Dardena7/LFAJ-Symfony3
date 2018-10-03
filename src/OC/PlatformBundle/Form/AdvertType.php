@@ -29,7 +29,6 @@ class AdvertType extends AbstractType
             ->add('date', DateType::class)
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('author', TextType::class)
             //->add('categories', CollectionType::class,
             //  array('entry_type' => CategoryType::class,
             //    'allow_add' => true,
@@ -39,6 +38,7 @@ class AdvertType extends AbstractType
               array('class' => 'OCPlatformBundle:Category',
                 'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false,
                 'query_builder' => function(CategoryRepository $repository) use($pattern){
                   return $repository->getLikeQueryBuilder($pattern);
                 }

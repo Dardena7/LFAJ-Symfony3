@@ -20,6 +20,7 @@ services:
         tags:
             - { name: validator.constraint_validator, alias: oc_platform_antiflood}
 
+
     #oc_platform.doctrine_listener.application_creation:
     #    class: OC\PlatformBundle\DoctrineListener\ApplicationCreationListener
     #    arguments:

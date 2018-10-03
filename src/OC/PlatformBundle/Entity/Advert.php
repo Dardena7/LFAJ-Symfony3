@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use OC\PlatformBundle\Validator\Antiflood;
+use OC\UserBundle\Entity\User;
 
 /**
  * Advert
@@ -55,10 +56,10 @@ class Advert
     private $title;
 
     /**
-     * @var string
+     * @var User
      *
-     * @ORM\Column(name="author", type="string", length=255)
-     * @Assert\Length(min=2)
+     * @ORM\ManyToOne(targetEntity="OC\UserBundle\Entity\User", inversedBy="adverts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
@@ -178,14 +179,14 @@ class Advert
     /**
      * Set author
      *
-     * @param string $author
+     * @param User $author
      *
      * @return Advert
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
-
+        $author->addAdvert($this);
         return $this;
     }
 
