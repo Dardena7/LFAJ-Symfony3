@@ -1,0 +1,18 @@
+{% extends '@OCUser/layout.html.twig' %}
+
+{% block headertitle %}
+{% endblock headertitle %}
+
+{% block fos_user_content %}
+
+  <h1>Sign Up</h1>
+  <div class="block wow fadeInUp" data-wow-delay=".3s">
+      {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register text-muted'}}) }}
+          {{ form_widget(form) }}
+          <div>
+              <input type="submit" class="btn btn-default" value="Register" />
+          </div>
+      {{ form_end(form) }}
+  </div>
+
+{% endblock fos_user_content %}

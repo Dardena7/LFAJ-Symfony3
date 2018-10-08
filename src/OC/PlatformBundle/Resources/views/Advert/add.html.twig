@@ -1,66 +1,24 @@
-{% extends 'base.html.twig' %}
-{% block body %}
+{% extends '@OCPlatform/layout.html.twig' %}
 
-<div class="container">
-  <h1>Ajouter une annonce</h1>
-
-  <div>
-    {{ include('@OCPlatform/Advert/form.html.twig') }}
-  </div>
-</div>
-
-{% block javascript %}
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-      var $container = $('div#oc_platformbundle_advert_categories');
-      var index = $container.find(':input').length;
-
-      $('#add_category').click(function(e) {
-        addCategory($container);
-        e.preventDefault();
-        return false;
-      });
-
-      if (index == 0) {
-        addCategory($container);
-      }
-      else {
-        $container.children('div').each(function(){
-          addDeleteLink($(this));
-        });
-      }
-
-      function addCategory($container) {
-        var template = $container.attr('data-prototype')
-          .replace(/__name__label__/g, 'Catégorie n°' + (index+1))
-          .replace(/__name__/g, index);
-
-        var $prototype = $(template);
-        addDeleteLink($prototype);
-        $container.append($prototype);
-        index++;
-      }
-
-      function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-        $prototype.append($deleteLink);
-
-        $deleteLink.click(function(e) {
-          $prototype.remove();
-          e.preventDefault();
-          index--;
-          return false;
-        });
-      }
-
-
-    })
-  </script>
+{% block h1title %}
+  Post a new offer
 {% endblock %}
-{% endblock %}
+
+{% block main %}
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+    <div class="container">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% block addform %}
+                  {{ include("@OCPlatform/Advert/form.html.twig") }}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

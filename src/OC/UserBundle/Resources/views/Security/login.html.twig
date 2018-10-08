@@ -1,0 +1,38 @@
+{% extends '@OCUser/layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block headertitle %}
+{% endblock headertitle %}
+
+{% block fos_user_content %}
+<h1>Login</h1>
+<div class="block wow fadeInUp" data-wow-delay=".3s">
+    {% if error %}
+        <div class="block text-danger">{{ error.messageKey }}</div>
+    {% endif %}
+
+    <form class="text-muted" action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+
+        <div class="form-group">
+          <label class="conhtrol-label" for="username">{{ 'security.login.username'|trans }}</label>
+          <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+        </div>
+
+        <div class="form-group">
+          <label class="conhtrol-label" for="password">{{ 'security.login.password'|trans }}</label>
+          <input class="form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+          <label class="conhtrol-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        </div>
+
+        <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Confirm" />
+    </form>
+    <a class="btn btn-default" href="{{ path("fos_user_registration_register") }}">Sign up</a>
+</div>
+{% endblock fos_user_content %}

@@ -1,20 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends '@OCPlatform/layout.html.twig' %}
 
-{% block body %}
-
-<h1>Supprimer une annonce</h1>
-
-<p>
-  Etes vous certain de vouloir supprimer l'annonce "{{ advert.title }}" ?
-</p>
-
-<form action="{{ path("oc_platform_delete", {'id': advert.id}) }}" method="post">
-  <a href="{{ path("oc_platform_view", {"id": advert.id}) }}" class="btn btn-default">
-    <i class="glyphicion glyphicion-chevron-left"></i>
-    Retour à l'annonce
-  </a>
-  <input type="submit" value="Supprimer" class="btn btn-danger" />
-  {{ form_rest(form) }}
-</form>
-
+{% block h1title %}
+  Delete job offer
 {% endblock %}
+
+{% block main %}
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+    <div class="container">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <p>
+                Are you sure to delete job offer : "{{ advert.title }}" ?
+              </p>
+
+              <form action="{{ path("oc_platform_delete", {'id': advert.id}) }}" method="post">
+                <a href="{{ path("oc_platform_view", {"id": advert.id}) }}" class="btn btn-default">
+                  <i class="glyphicion glyphicion-chevron-left"></i>
+                  Back to job offer
+                </a>
+                <input type="submit" value="Supprimer" class="btn btn-danger" />
+                {{ form_rest(form) }}
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

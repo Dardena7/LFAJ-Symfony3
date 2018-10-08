@@ -1,11 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends '@OCPlatform/layout.html.twig' %}
 
-{% block body %}
-
-<h1>Edit page</h1>
-
-<div>
-  {{ form(form) }}
-</div>
-
+{% block h1title %}
+  Edit job offer
 {% endblock %}
+
+{% block main %}
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+    <div class="container">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% block addform %}
+                  {{ include("@OCPlatform/Advert/form.html.twig") }}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

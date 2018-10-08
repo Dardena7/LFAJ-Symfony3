@@ -12,6 +12,7 @@ use OC\PlatformBundle\Entity\Image;
 use OC\PlatformBundle\Entity\Application;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use OC\PlatformBundle\Form\AdvertType;
+use OC\PlatformBundle\Form\ApplicationType;
 use OC\PlatformBundle\Form\AdvertEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -66,6 +67,9 @@ class AdvertController extends Controller
       throw new NotFoundHttpException("L'annonce avec l'id ".$id." n'existe pas !");
     }
 
+    $application = new Application();
+    $appForm = $this->get('form.factory')->create(ApplicationType::class, $application);
+
     $listApplications = $advert->getApplications();
     $listCategories = $advert->getCategories();
 
@@ -79,7 +83,8 @@ class AdvertController extends Controller
         'advert' => $advert,
         'listApplications' => $listApplications,
         'listCategories' => $listCategories,
-        'listAdvertSkills' => $listAdvertSkills
+        'listAdvertSkills' => $listAdvertSkills,
+        'appForm' => $appForm->createView()
       )
     );
   }
@@ -103,6 +108,7 @@ class AdvertController extends Controller
       if($form->isValid())
       {
         $advert->setAuthor($author);
+        $advert->setDate(new \DateTime());
         $em = $this->getDoctrine()->getManager();
         $em->persist($advert);
         $em->flush();
@@ -129,7 +135,7 @@ class AdvertController extends Controller
     {
       throw new NotFoundHttpException("L'annonce avec l'id ".$id." n'existe pas.");
     }
-    
+
     $this->denyAccessUnlessGranted('edit', $advert);
 
     $form = $this->get('form.factory')->create(AdvertEditType::class, $advert);

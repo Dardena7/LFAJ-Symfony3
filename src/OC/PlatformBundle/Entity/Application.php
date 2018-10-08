@@ -23,9 +23,10 @@ class Application
     private $id;
 
     /**
-     * @var string
+     * @var User
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="OC\UserBundle\Entity\User", inversedBy="applications")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
@@ -63,30 +64,6 @@ class Application
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Application
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -176,4 +153,28 @@ class Application
       {
         $this->getAdvert()->decreaseNbApp();
       }
+
+    /**
+     * Set author
+     *
+     * @param \OC\UserBundle\Entity\User $author
+     *
+     * @return Application
+     */
+    public function setAuthor(\OC\UserBundle\Entity\User $author)
+    {
+        $this->author = $author;
+        $author->addApplication($this);
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \OC\UserBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 }

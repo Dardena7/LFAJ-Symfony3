@@ -22,16 +22,27 @@ class User extends BaseUser
    protected $id;
 
    /**
-    * @var User
-    *
+    * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist", "remove"})
+    */
+   private $image;
+
+   /**
     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Advert", mappedBy="author", cascade="remove")
     */
    private $adverts;
+
+   /**
+    * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="author", cascade="remove")
+    */
+   private $applications;
+
 
    public function __construct()
    {
      parent::__construct();
      $this->adverts = new ArrayCollection();
+     $this->applications = new ArrayCollection();
+     $this->image = null;
    }
 
 
@@ -45,7 +56,7 @@ class User extends BaseUser
     public function addAdvert(\OC\PlatformBundle\Entity\Advert $advert)
     {
         $this->adverts[] = $advert;
-        
+
         return $this;
     }
 
@@ -67,5 +78,74 @@ class User extends BaseUser
     public function getAdverts()
     {
         return $this->adverts;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \OC\PlatformBundle\Entity\Image $image
+     *
+     * @return User
+     */
+    public function setImage(\OC\PlatformBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \OC\PlatformBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getAvatarPath()
+    {
+      if($this->image === null) {
+        return "images/avatar.jpg";
+      }
+      elseif($this->image->getExample()) {
+        return $this->image->getUrl();
+      }
+      return $this->image->getWebPath();
+    }
+
+    /**
+     * Add application
+     *
+     * @param \OC\PlatformBundle\Entity\Application $application
+     *
+     * @return User
+     */
+    public function addApplication(\OC\PlatformBundle\Entity\Application $application)
+    {
+        $this->applications[] = $application;
+
+        return $this;
+    }
+
+    /**
+     * Remove application
+     *
+     * @param \OC\PlatformBundle\Entity\Application $application
+     */
+    public function removeApplication(\OC\PlatformBundle\Entity\Application $application)
+    {
+        $this->applications->removeElement($application);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

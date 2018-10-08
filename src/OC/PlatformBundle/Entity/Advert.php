@@ -112,6 +112,7 @@ class Advert
 
     public function __construct()
     {
+      $this->published = true;
       $this->date = new \DateTime();
       $this->categories = new ArrayCollection();
       $this->applications = new ArrayCollection();

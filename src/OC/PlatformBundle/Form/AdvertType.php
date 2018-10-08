@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -26,7 +25,6 @@ class AdvertType extends AbstractType
     {
         $pattern = '%';
         $builder
-            ->add('date', DateType::class)
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             //->add('categories', CollectionType::class,
@@ -58,23 +56,6 @@ class AdvertType extends AbstractType
             }
             else {
               $event->getForm()->add('image', ImageType::class, array('required' => false));
-            }
-          }
-        );
-
-        $builder->addEventListener(
-          FormEvents::PRE_SET_DATA,
-          function(FormEvent $event) {
-            $advert = $event->getData();
-
-            if(null === $advert)
-              return;
-            if(!$advert->getPublished() || null === $advert->getId())
-            {
-              $event->getForm()->add('published', CheckboxType::class, array('required' => false));
-            }
-            else {
-              $event->getForm()->remove('published');
             }
             $event->getForm()->add('saved', SubmitType::class);
           }

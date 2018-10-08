@@ -1,0 +1,12 @@
+{% extends '@OCUser/layout.html.twig' %}
+
+{% block headertitle %}
+{% endblock headertitle %}
+
+{% block fos_user_content %}
+<h1>Confirmation</h1>
+<div class="block wow fadeInUp" data-wow-delay=".3s">
+    <h2 class='bg-success text-muted'>Congratulations {{ user.username }} your account has been created with success !</h2>
+    <a class="btn btn-default" href="{{ path("oc_platform_homepage") }}">Go to the jobs list</a>
+</div>
+{% endblock fos_user_content %}

@@ -40,6 +40,11 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    app.form.profile:
+        class: OC\UserBundle\Form\ProfileUserType
+        tags:
+            - { name: user_profile_form.type, alias: app_user_profile }
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

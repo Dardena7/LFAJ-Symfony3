@@ -37,9 +37,19 @@ class Image
      */
     private $alt;
 
+    /**
+    * @ORM\Column(name="example", type="boolean", nullable=false)
+    */
+    private $example;
+
     private $file;
 
     private $tempFileName;
+
+
+    public function __construct() {
+      $this->example = false;
+    }
 
 
     /**
@@ -122,7 +132,9 @@ class Image
      */
     public function preUpload()
     {
-      if(null === $this->file) {return;}
+      if(null === $this->file) {
+        return;
+      }
 
       $this->url = $this->file->guessExtension();
       $this->alt = $this->file->getClientOriginalName();
@@ -181,5 +193,29 @@ class Image
     public function getWebPath()
     {
       return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+    }
+
+    /**
+     * Set example
+     *
+     * @param boolean $example
+     *
+     * @return Image
+     */
+    public function setExample($example)
+    {
+        $this->example = $example;
+
+        return $this;
+    }
+
+    /**
+     * Get example
+     *
+     * @return boolean
+     */
+    public function getExample()
+    {
+        return $this->example;
     }
 }

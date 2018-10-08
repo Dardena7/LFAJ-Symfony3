@@ -1,0 +1,33 @@
+{% extends '@OCPlatform/layout.html.twig' %}
+
+{% block h1title %}
+  Delete application
+{% endblock %}
+
+{% block main %}
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+    <div class="container">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <p>
+                Are you sure to delete application : "{{ application.content }}" ?
+              </p>
+
+              <form action="{{ path("oc_platform_application_delete", {'applicationId': application.id}) }}" method="post">
+                <a href="{{ path("oc_platform_view", {"id": application.advert.id}) }}" class="btn btn-default">
+                  <i class="glyphicion glyphicion-chevron-left"></i>
+                  Back to job offer
+                </a>
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                {{ form_rest(form) }}
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

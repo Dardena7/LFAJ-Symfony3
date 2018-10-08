@@ -46,3 +46,18 @@ oc_platform_applications_list:
     path:     /platform/applications
     defaults:
         _controller: OCPlatformBundle:Application:index
+
+oc_platform_application_add:
+    path: /platform/application/add/{advertId}
+    defaults:
+        _controller: OCPlatformBundle:Application:Add
+
+oc_platform_application_edit:
+    path: /platform/application/edit/{applicationId}
+    defaults:
+        _controller: OCPlatformBundle:Application:Edit
+
+oc_platform_application_delete:
+    path: /platform/application/delete/{applicationId}
+    defaults:
+        _controller: OCPlatformBundle:Application:Delete

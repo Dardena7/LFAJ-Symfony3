@@ -1,56 +1,143 @@
-{% extends 'base.html.twig' %}
+{% extends '@OCPlatform/layout.html.twig' %}
 
-{% block body %}
+{% block h1title %}
+  {{ advert.title }}
+{% endblock h1title %}
 
-<h1>Advert view n° {{ advert.id }} title: {{ advert.title }}</h1>
-{% if advert.image is not null %}
-  <img style="width:800px; height:250px" src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}">
-{% endif %}
-<p>Author: {{ advert.author }}</p>
-<p>Content: {{ advert.content }}</p>
-<p>Date: {{ advert.date|date("d/m/Y") }}</p>
-<p>Updated: {{ advert.updatedAt|date("d/m/Y H:i:s")}}
-  <p>Nb app: {{ advert.nbApplications }}</p>
-<p>Catégories :
-  <ul>
-    {% for category in listCategories %}
-      <li>{{ category.name }}</li>
-    {% endfor %}
-    {% if advert.categories|length == 0 %}
-      <li>Pas de catégories</li>
-    {% endif %}
-  </ul>
-</p>
+{% block main %}
 
-<p>Cette annonce requiert les compétences suivantes:
-  <ul>
-  {% if listAdvertSkills|length > 0 %}
-    {% for advertSkill in listAdvertSkills %}
-      <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
-    {% endfor %}
-  {% else %}
-    <li>Aucune connaissance spécifique.</li>
-  {% endif %}
-  </ul>
-</p>
+<!--=====================================
+=            Single Post          =
+======================================-->
+<section class="single-post">
+    <div class="container">
+        <!-- Advert -->
+        <div class="row">
+            <div class="col-md-12">
+                {% if advert.author == app.user %}
+                  <a href="{{ path("oc_platform_edit", {"id": advert.id} ) }}">
+                    Edit advert
+                  </a>
+                   /
+                  <a class="text-danger" href="{{ path("oc_platform_delete", {"id": advert.id} ) }}">
+                    Delete advert
+                  </a>
+                {% endif %}
+                <h2>Advert</h2>
+                <!-- Image & Informations -->
+                <div class="row">
+                    <!-- Image -->
+                    <div class="col-xs-4">
+                      <img class="img-thumbnail"
+                          src="
+                          {% if advert.image.example == true %}
+                            {{advert.image.url}}
+                          {% else %}
+                            {{ asset(advert.image.webPath) }}
+                          {% endif %}"
+                          alt="{{ advert.image.alt }}">
+                    </div>
+                    <!-- Informations -->
+                    <div class="col-xs-8">
+                      <h3>Informations</h3>
+                      <div>
+                        <p><strong>Author:</strong> {{ advert.author }}</p>
+                        <p><strong>Date:</strong> {{ advert.date|date("d/m/Y") }}</p>
+                      </div>
+                      <div>
+                        <strong>Categories:</strong>
+                        <ul>
+                          {% for category in listCategories %}
+                            <li>{{ category.name }}</li>
+                          {% endfor %}
+                          {% if advert.categories|length == 0 %}
+                            <li>No categories specified</li>
+                          {% endif %}
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+                <!--Description-->
+                <div class="row">
+                    <div class="col-xs-12">
+                      <h3>Description</h3>
+                      <p>{{ advert.content }}</p>
+                    </div>
+                </div>
+                <!--Skills-->
+                {#
+                <div class="row">
+                    <div class="col-xs-12">
+                      <h3>Required skills</h3>
+                      {% if listAdvertSkills|length > 0 %}
+                      <ul>
 
-<h2> Applications </h2>
-{% for application in listApplications %}
-  <div>
-    <p>Id: {{ application.id }}</p>
-    <p>Date: {{ application.date|date("d/m/Y") }} </p>
-    <p>Author: {{ application.author }} </p>
-    <p>Content: {{ application.content }} </p>
-  </div>
-{% endfor %}
+                        {% for advertSkill in listAdvertSkills %}
+                          <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% else %}
+                        <p>No skill specified.</p>
+                      {% endif %}
+                    </div>
+                </div>
+                #}
+            </div>
+        </div>
 
-{% if listApplications|length == 0 %}
-  <p>Il n'y a pas de candidatures pour le moment !</p>
-{% endif %}
+        <div class="divider"></div>
 
-<div>
-  {% for message in app.session.flashbag.get('info') %}
-    <p>Message flash : {{ message }}</p>
-  {% endfor %}
-</div>
-{% endblock %}
+        <!-- Apply Form -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Apply for the job</h2>
+                <form action="{{ path("oc_platform_application_add", {"advertId": advert.id} ) }}" method="post">
+                  {{ form_rest(appForm) }}
+                  <input class="btn btn-default customBtn" type="submit" id="_submit" name="_submit" value="Send application" />
+                </form>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Advert applications -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Applications </h2>
+                <p>Number of applications: {{ advert.nbApplications }}</p>
+                {% for application in listApplications %}
+                <div class="comments">
+                    <div class="media">
+                        {% if application.author == app.user %}
+                          <p>
+                            <a class="text-primary" href="{{ path("oc_platform_application_edit", {"applicationId": application.id} ) }}">Edit</a>
+                             /
+                            <a class="text-danger" href="{{ path("oc_platform_application_delete", {"applicationId": application.id} ) }}">Delete</a>
+                          </p>
+                        {% endif %}
+                        <div class="pull-left">
+                            <img alt="avatar.{{ application.author }}"
+                                  src="{{ asset(application.author.avatarpath) }}"
+                                  class="media-object"
+                                  style="width:100px; height: 100px;"
+                            />
+                        </div>
+                        <div class="media-body">
+                            <p class="media-heading"><strong>{{ application.author }}</strong></hp>
+                            <p class="text-muted">{{ application.date|date("d/m/Y s:i:h")}}</p>
+                            <p>{{ application.content }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if listApplications|length == 0 %}
+                  <p>There is no applications for the moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock main %}

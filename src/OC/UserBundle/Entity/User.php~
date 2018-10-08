@@ -4,6 +4,7 @@ namespace OC\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -21,10 +22,93 @@ class User extends BaseUser
    protected $id;
 
    /**
-    * @var User
-    *
+    * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist", "remove"})
+    */
+   private $image;
+
+   /**
     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Advert", mappedBy="author", cascade="remove")
     */
    private $adverts;
 
+   /**
+    * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="author", cascade="remove")
+    */
+   private $applications;
+
+
+   public function __construct()
+   {
+     parent::__construct();
+     $this->adverts = new ArrayCollection();
+     $this->applications = new ArrayCollection();
+     $this->image = null;
+   }
+
+
+    /**
+     * Add advert
+     *
+     * @param \OC\PlatformBundle\Entity\Advert $advert
+     *
+     * @return User
+     */
+    public function addAdvert(\OC\PlatformBundle\Entity\Advert $advert)
+    {
+        $this->adverts[] = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Remove advert
+     *
+     * @param \OC\PlatformBundle\Entity\Advert $advert
+     */
+    public function removeAdvert(\OC\PlatformBundle\Entity\Advert $advert)
+    {
+        $this->adverts->removeElement($advert);
+    }
+
+    /**
+     * Get adverts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdverts()
+    {
+        return $this->adverts;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \OC\PlatformBundle\Entity\Image $image
+     *
+     * @return User
+     */
+    public function setImage(\OC\PlatformBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \OC\PlatformBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getAvatarPath()
+    {
+      if($this->image === null) {
+        return "images/avatar.jpg";
+      }
+      return $this->image->getWebPath();
+    }
 }

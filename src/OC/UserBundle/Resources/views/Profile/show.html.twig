@@ -1,0 +1,24 @@
+{% extends '@OCUser/layout.html.twig' %}
+
+{% block h1title %}
+Profile
+{% endblock %}
+
+{% block fos_user_content %}
+  <div class="block text-muted">
+      <p>
+        <img alt="avatar.{{ user.id }}"
+            src="{{ asset(user.avatarpath) }}"
+            class="media-object"
+            style="width:100px; height: 100px; margin: auto;"
+        >
+      </p>
+      <p><strong>Username</strong>: {{ user.username }}</p>
+      <p><strong>Email</strong>: {{ user.email }}</p>
+  </div>
+
+  <div class="block">
+    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">Edit profile</a>
+    <a href="{{ path('fos_user_change_password') }}" class="btn btn-default">Change password</a>
+  </div>
+{% endblock fos_user_content %}

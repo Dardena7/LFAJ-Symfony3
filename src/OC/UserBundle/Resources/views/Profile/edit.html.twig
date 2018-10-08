@@ -1,0 +1,16 @@
+{% extends '@OCUser/layout.html.twig' %}
+
+{% block h1title %}
+Edit Profile
+{% endblock %}
+
+{% block fos_user_content %}
+  <div class="block fadeInUp text-muted">
+    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-default" type="submit" value="Confirm" />
+        </div>
+    {{ form_end(form) }}
+  </div>
+{% endblock fos_user_content %}

@@ -1,7 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends '@OCPlatform/layout.html.twig'%}
 
-{% block body %}
+{% block headertitle %}
+{% endblock headertitle %}
 
-<h1>Home</h1>
+{% block main %}
 
-{% endblock %}
+<!--
+==================================================
+Slider Section Start
+================================================== -->
+<section id="hero-area" >
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="block wow fadeInUp" data-wow-delay=".3s">
+                <!-- Slider -->
+                <section class="cd-intro">
+                    <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
+                    <span>HI, MY NAME IS ALEXIS & I AM A</span><br>
+                    <span class="cd-words-wrapper">
+                        <b class="is-visible">DEVELOPER</b>
+                        <b>LOOKING FOR</b>
+                        <b>A JOB</b>
+                    </span>
+                    </h1>
+                </section> <!-- cd-intro -->
+                <!-- /.slider -->
+                <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
+                    This is a demo-website created with <strong>SYMFONY 3</strong>.<br>
+                    Create an account then post a job offer and/or apply for a job.
+                </h2>
+                <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" href="{{ path("fos_user_security_login") }}">Log In</a>
+                <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" href="{{ path("fos_user_registration_register") }}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+</section><!--/#main-slider-->
+
+{% endblock main %}

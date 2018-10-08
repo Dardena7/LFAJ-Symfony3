@@ -1,0 +1,30 @@
+{% extends '@OCPlatform/layout.html.twig' %}
+
+{% block h1title %}
+  Edit application
+{% endblock %}
+
+{% block main %}
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+    <div class="container">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              {{ form_start(form) }}
+
+              {{ form_errors(form) }}
+
+              {{ form_rest(form) }}
+
+              <input class="btn btn-default customBtn" type="submit" id="_submit" name="_submit" value="Edit application" />
+
+              {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

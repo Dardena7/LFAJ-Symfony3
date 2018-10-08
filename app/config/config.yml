@@ -19,7 +19,7 @@ framework:
     csrf_protection: ~
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
-    default_locale: fr
+    default_locale: en
     trusted_hosts: ~
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
@@ -86,3 +86,6 @@ fos_user:
     from_email:
         address: me@mail.com
         sender_name: Me
+    profile:
+        form:
+            type: OC\UserBundle\Form\ProfileUserType

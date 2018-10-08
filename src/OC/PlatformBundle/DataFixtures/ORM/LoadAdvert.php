@@ -10,13 +10,13 @@ use OC\PlatformBundle\Entity\Category;
 use OC\PlatformBundle\Entity\Skill;
 use OC\PlatformBundle\Entity\Application;
 use OC\PlatformBundle\Entity\AdvertSkill;
+use OC\UserBundle\Entity\User;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
 class LoadAdvert implements FixtureInterface
 {
   public function load(ObjectManager $manager)
   {
-/*
     //Load Categories
     $category1 = new Category();
     $category2 = new Category();
@@ -24,11 +24,11 @@ class LoadAdvert implements FixtureInterface
     $category4 = new Category();
     $category5 = new Category();
 
-    $category1->setName('Développement web');
-    $category2->setName('Développement mobile');
-    $category3->setName('Graphisme');
-    $category4->setName('Intégration');
-    $category5->setName('Réseau');
+    $category1->setName('Web development');
+    $category2->setName('Mobile development');
+    $category3->setName('Design');
+    $category4->setName('Front-end development');
+    $category5->setName('Network');
 
     $manager->persist($category1);
     $manager->persist($category2);
@@ -37,6 +37,7 @@ class LoadAdvert implements FixtureInterface
     $manager->persist($category5);
 
     //Load skills
+    /*
     $skill1 = new Skill();
     $skill2 = new Skill();
     $skill3 = new Skill();
@@ -54,9 +55,10 @@ class LoadAdvert implements FixtureInterface
     $manager->persist($skill3);
     $manager->persist($skill4);
     $manager->persist($skill5);
+    */
 
 
-    //Preapre images
+    //Prepare images
     $image1 = new Image();
     $image2 = new Image();
     $image3 = new Image();
@@ -67,6 +69,16 @@ class LoadAdvert implements FixtureInterface
     $image8 = new Image();
     $image9 = new Image();
     $image10 = new Image();
+    $image11 = new Image();
+    $image12 = new Image();
+    $image13 = new Image();
+    $image14 = new Image();
+    $image15 = new Image();
+    $image16 = new Image();
+    $image17 = new Image();
+    $image18 = new Image();
+    $image19 = new Image();
+    $image20 = new Image();
 
     $image1->setUrl('https://cdn.lynda.com/course/520220/520220-636136853521823826-16x9.jpg');
     $image2->setUrl('http://blogs.worldbank.org/files/education/step3.jpg');
@@ -78,6 +90,15 @@ class LoadAdvert implements FixtureInterface
     $image8->setUrl('http://blogs.worldbank.org/files/education/step3.jpg');
     $image9->setUrl('http://developnig.com/wp-content/uploads/2017/03/Developmental23Initiatives.jpg');
     $image10->setUrl('https://cdn.lynda.com/course/520220/520220-636136853521823826-16x9.jpg');
+    $image11->setUrl('https://pbs.twimg.com/profile_images/880067802316623873/45id8G7J_400x400.jpg');
+    $image12->setUrl('https://filecache.mediaroom.com/mr5mr_ibmnews/179009/IBM%20logo.jpg');
+    $image13->setUrl('https://pbs.twimg.com/profile_images/875616952340815872/nnhhtjyc_400x400.jpg');
+    $image14->setUrl('https://support.apple.com/content/dam/edam/applecare/images/en_US/osx/featured-content-apple-icon_2x.png');
+    $image15->setUrl('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/768px-Google_Chrome_icon_%28September_2014%29.svg.png');
+    $image16->setUrl('https://metrouk2.files.wordpress.com/2018/08/gettyimages-1016007038-e1534858632383.jpg?quality=80&strip=all&zoom=1&resize=644%2C479');
+    $image17->setUrl('https://talksport.com/wp-content/uploads/sites/5/2018/07/HENRY2.jpg?strip=all&w=960&quality=100');
+    $image19->setUrl('https://media.gettyimages.com/photos/sport-football-fifa-world-cup-stuttgart-13th-june-2006-france-0-v-0-picture-id78974111');
+    $image20->setUrl('https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fpeopledotcom.files.wordpress.com%2F2018%2F08%2Fdie-hard-3-2000.jpg%3Fw%3D450&w=700&c=sc&poi=face&q=85');
 
     $image1->setAlt('image-alt');
     $image2->setAlt('image-alt');
@@ -89,6 +110,103 @@ class LoadAdvert implements FixtureInterface
     $image8->setAlt('image-alt');
     $image9->setAlt('image-alt');
     $image10->setAlt('image-alt');
+    $image11->setAlt('image-alt');
+    $image12->setAlt('image-alt');
+    $image13->setAlt('image-alt');
+    $image14->setAlt('image-alt');
+    $image15->setAlt('image-alt');
+    $image16->setAlt('image-alt');
+    $image17->setAlt('image-alt');
+    $image18->setAlt('image-alt');
+    $image19->setAlt('image-alt');
+    $image20->setAlt('image-alt');
+
+    $image1->setExample(true);
+    $image2->setExample(true);
+    $image3->setExample(true);
+    $image4->setExample(true);
+    $image5->setExample(true);
+    $image6->setExample(true);
+    $image7->setExample(true);
+    $image8->setExample(true);
+    $image9->setExample(true);
+    $image10->setExample(true);
+    $image11->setExample(true);
+    $image12->setExample(true);
+    $image13->setExample(true);
+    $image14->setExample(true);
+    $image15->setExample(true);
+    $image16->setExample(true);
+    $image17->setExample(true);
+    $image18->setExample(true);
+    $image19->setExample(true);
+    $image20->setExample(true);
+
+    //Load User
+    $user1 = new User();
+    $user2 = new User();
+    $user3 = new User();
+    $user4 = new User();
+    $user5 = new User();
+    $user6 = new User();
+    $user7 = new User();
+    $user8 = new User();
+    $user9 = new User();
+    $user10 = new User();
+
+    $user1->setUsername("Trane");
+    $user2->setUsername("IBM");
+    $user3->setUsername("Microsoft");
+    $user4->setUsername("Apple");
+    $user5->setUsername("Google");
+    $user6->setUsername("Alexis");
+    $user7->setUsername("Thierry");
+    $user8->setUsername("Sarah");
+    $user9->setUsername("Sylvain");
+    $user10->setUsername("Bruce");
+
+    $user1->setEmail("Trane@gmail.com");
+    $user2->setEmail("ibm@gmail.com");
+    $user3->setEmail("microsoft@gmail.com");
+    $user4->setEmail("apple@gmail.com");
+    $user5->setEmail("google@gmail.com");
+    $user6->setEmail("alexis@gmail.com");
+    $user7->setEmail("thierry@gmail.com");
+    $user8->setEmail("sarah@gmail.com");
+    $user9->setEmail("sylvain@gmail.com");
+    $user10->setEmail("bruce@gmail.com");
+
+    $user1->setPassword("helloworld");
+    $user2->setPassword("helloworld");
+    $user3->setPassword("helloworld");
+    $user4->setPassword("helloworld");
+    $user5->setPassword("helloworld");
+    $user6->setPassword("helloworld");
+    $user7->setPassword("helloworld");
+    $user8->setPassword("helloworld");
+    $user9->setPassword("helloworld");
+    $user10->setPassword("helloworld");
+
+    $user1->setImage($image11);
+    $user2->setImage($image12);
+    $user3->setImage($image13);
+    $user4->setImage($image14);
+    $user5->setImage($image15);
+    $user6->setImage($image16);
+    $user7->setImage($image17);
+    $user9->setImage($image19);
+    $user10->setImage($image20);
+
+    $manager->persist($user1);
+    $manager->persist($user2);
+    $manager->persist($user3);
+    $manager->persist($user4);
+    $manager->persist($user5);
+    $manager->persist($user6);
+    $manager->persist($user7);
+    $manager->persist($user8);
+    $manager->persist($user9);
+    $manager->persist($user10);
 
     //Load AdvertSkill
     $advert1 = new Advert();
@@ -113,16 +231,16 @@ class LoadAdvert implements FixtureInterface
     $advert9->setTitle('Dev java medior');
     $advert10->setTitle('Software developer');
 
-    $advert1->setAuthor('IBM');
-    $advert2->setAuthor('Actito');
-    $advert3->setAuthor('Microsoft');
-    $advert4->setAuthor('Adecco');
-    $advert5->setAuthor('Google');
-    $advert6->setAuthor('Daoust');
-    $advert7->setAuthor('Trane');
-    $advert8->setAuthor('Fortis');
-    $advert9->setAuthor('Dexia');
-    $advert10->setAuthor('WebAddict');
+    $advert1->setAuthor($user1);
+    $advert2->setAuthor($user1);
+    $advert3->setAuthor($user2);
+    $advert4->setAuthor($user2);
+    $advert5->setAuthor($user2);
+    $advert6->setAuthor($user3);
+    $advert7->setAuthor($user4);
+    $advert8->setAuthor($user4);
+    $advert9->setAuthor($user5);
+    $advert10->setAuthor($user5);
 
     $advert1->setContent('Etenim si attendere diligenter, existimare vere de omni hac causa volueritis, sic constituetis, iudices, nec descensurum quemquam ad hanc accusationem fuisse, cui, utrum vellet, liceret, nec, cum descendisset, quicquam habiturum spei fuisse, nisi alicuius intolerabili libidine et nimis acerbo odio niteretur. Sed ego Atratino, humanissimo atque optimo adulescenti meo necessario, ignosco, qui habet excusationem vel pietatis vel necessitatis vel aetatis. Si voluit accusare, pietati tribuo, si iussus est, necessitati, si speravit aliquid, pueritiae. Ceteris non modo nihil ignoscendum, sed etiam acriter est resistendum.');
     $advert2->setContent('Etenim si attendere diligenter, existimare vere de omni hac causa volueritis, sic constituetis, iudices, nec descensurum quemquam ad hanc accusationem fuisse, cui, utrum vellet, liceret, nec, cum descendisset, quicquam habiturum spei fuisse, nisi alicuius intolerabili libidine et nimis acerbo odio niteretur. Sed ego Atratino, humanissimo atque optimo adulescenti meo necessario, ignosco, qui habet excusationem vel pietatis vel necessitatis vel aetatis. Si voluit accusare, pietati tribuo, si iussus est, necessitati, si speravit aliquid, pueritiae. Ceteris non modo nihil ignoscendum, sed etiam acriter est resistendum.');
@@ -200,37 +318,37 @@ class LoadAdvert implements FixtureInterface
     $application14 = new Application();
     $application15 = new Application();
 
-    $application1->setAuthor('Alexis Dardenne');
-    $application2->setAuthor('Corentin Duboix');
-    $application3->setAuthor('Gerad watelet');
-    $application4->setAuthor('Dupond Mathieu');
-    $application5->setAuthor('Gerard Darmon');
-    $application6->setAuthor('Alain Chabat');
-    $application7->setAuthor('Dominique Farougia');
-    $application8->setAuthor('Gad El Maleh');
-    $application9->setAuthor('Jamel Debouzze');
-    $application10->setAuthor('Florent Payre');
-    $application11->setAuthor('Eden Hazard');
-    $application12->setAuthor('Mathieu Balmon');
-    $application13->setAuthor('Dimitri Payet');
-    $application14->setAuthor('Romelu Lukaku');
-    $application15->setAuthor('Thomas Meunier');
+    $application1->setAuthor($user6);
+    $application2->setAuthor($user7);
+    $application3->setAuthor($user8);
+    $application4->setAuthor($user9);
+    $application5->setAuthor($user9);
+    $application6->setAuthor($user10);
+    $application7->setAuthor($user7);
+    $application8->setAuthor($user6);
+    $application9->setAuthor($user8);
+    $application10->setAuthor($user9);
+    $application11->setAuthor($user10);
+    $application12->setAuthor($user7);
+    $application13->setAuthor($user8);
+    $application14->setAuthor($user10);
+    $application15->setAuthor($user6);
 
-    $application1->setContent('Je suis ultra motivé');
-    $application2->setContent('Je suis un autodidacte');
-    $application3->setContent('J\'ai une expérience hors du commun');
-    $application4->setContent('Je sors d\'une école d\'ingénieur');
-    $application5->setContent('Je suis un perfectionniste');
-    $application6->setContent('Je suis un bon à rien');
-    $application7->setContent('J\'ai des objectifs très élevé');
-    $application8->setContent('Je suis prêt à relever ce challenge!');
-    $application9->setContent('Je veux beaucoup d\'argent');
-    $application10->setContent('Je suis le futur Bill gates');
-    $application11->setContent('Je suis un petit génie de l\'informatique');
-    $application12->setContent('Faites le bon choix, c\'est moi !');
-    $application13->setContent('Voici mon cv et ma lettre de motivation');
-    $application14->setContent('Bonjour je me présente enchanté');
-    $application15->setContent('Cherche job URGENT !');
+    $application1->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application2->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application3->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application4->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application5->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application6->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application7->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application8->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application9->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application10->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application11->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application12->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application13->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application14->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
+    $application15->setContent('Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.');
 
     $application1->setAdvert($advert1);
     $application2->setAdvert($advert1);
@@ -266,7 +384,7 @@ class LoadAdvert implements FixtureInterface
     $manager->persist($application15);
 
     //Load advertSkills
-
+    /*
     $advertSkill1 = new AdvertSkill();
     $advertSkill2 = new AdvertSkill();
     $advertSkill3 = new AdvertSkill();
@@ -391,9 +509,9 @@ class LoadAdvert implements FixtureInterface
     $manager->persist($advertSkill17);
     $manager->persist($advertSkill18);
     $manager->persist($advertSkill19);
-    $manager->persist($advertSkill20);
+    $manager->persist($advertSkill20); */
 
-    $manager->flush(); */
+    $manager->flush();
   }
 }
 

@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends '@OCPlatform/layout.html.twig' %}
 
-{% block body %}
+{% block main %}
 
-  {% for key, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-      <div class="alert alert-{{key}}">
-        {{ message|trans({}, 'FOSUserBundle') }}
-      </div>
-    {% endfor %}
-  {% endfor %}
+<section id="hero-area" >
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8 col-md-offset-2 text-center">
+            
+              {% block fos_user_content %}
+              {% endblock fos_user_content %}
+            </div>
+        </div>
+    </div>
+</section>
 
-  {% block fos_user_content %}
-  {% endblock fos_user_content %}
-
-{% endblock %}
+{% endblock main %}
