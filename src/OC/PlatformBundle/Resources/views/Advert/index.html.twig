@@ -31,14 +31,13 @@
                     <div class="">
                         <a href="{{ path("oc_platform_view", {"id": advert.id} ) }}">
                           <img class="img-thumbnail"
-                                style="width: 350px; height: 250px;"
-                                src="
-                                {% if advert.image.example == true %}
-                                  {{advert.image.url}}
-                                {% else %}
-                                  {{ asset(advert.image.webPath) }}
-                                {% endif %}"
-                                alt="{{ advert.image.alt }}"
+                              style="width: 350px; height: 250px;"
+                              {% if advert.image.example == true %}
+                                src="{{advert.image.url}}"
+                              {% else %}
+                                src="{{ asset(advert.image.webPath) }}"
+                              {% endif %}
+                              alt="{{ advert.image.alt }}"
                             />
                         </a>
                     </div>

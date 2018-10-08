@@ -29,13 +29,13 @@
                     <!-- Image -->
                     <div class="col-xs-4">
                       <img class="img-thumbnail"
-                          src="
                           {% if advert.image.example == true %}
-                            {{advert.image.url}}
+                            src="{{advert.image.url}}"
                           {% else %}
-                            {{ asset(advert.image.webPath) }}
-                          {% endif %}"
-                          alt="{{ advert.image.alt }}">
+                            src="{{ asset(advert.image.webPath) }}"
+                          {% endif %}
+                          alt="{{ advert.image.alt }}"
+                      />
                     </div>
                     <!-- Informations -->
                     <div class="col-xs-8">
